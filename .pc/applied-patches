@@ -1,6 +1,5 @@
 10_fix_unchecked_mallocs.patch
 20_url_pattern.patch
-37_lpi.patch
 38_autoconf.patch
 41_casecomp.patch
 43_french.patch

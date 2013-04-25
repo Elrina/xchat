@@ -42,8 +42,6 @@
 #include <gtk/gtkversion.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <launchpad-integration/launchpad-integration.h>
-
 #include "../common/xchat.h"
 #include "../common/xchatc.h"
 #include "../common/cfgfiles.h"
@@ -2198,11 +2196,7 @@ normalitem:
 			if (submenu)
 				gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
 			else
-			{
 				gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-				if (GTK_IS_MENU_BAR(menu_bar) && !strcmp(mymenu[i].text, "_About"))
-					launchpad_integration_add_items (menu, -1, TRUE, TRUE);
-			}
 			gtk_widget_show (item);
 			break;
 
