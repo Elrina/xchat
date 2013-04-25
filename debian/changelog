@@ -1,3 +1,9 @@
+xchat (2.8.8-4linuxmint2) olivia; urgency=low
+
+  * 2.8.8
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 25 Apr 2013 13:42:42 +0100
+
 xchat (2.8.8-4linuxmint1) maya; urgency=low
 
   * Linux Mint default config
