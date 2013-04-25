@@ -17031,7 +17031,7 @@ if test "$gtkfe" != yes; then
 fi
 
 
-GUI_LIBS="$GUI_LIBS $GTK_LIBS -llaunchpad-integration"
+GUI_LIBS="$GUI_LIBS $GTK_LIBS"
 GUI_CFLAGS="$GUI_CFLAGS $GTK_CFLAGS"
 
 gnome=no
