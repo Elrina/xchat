@@ -1,0 +1,17 @@
+## 38_autoconf.dpatch by Daniel Holbach <daniel.holbach@ubuntu.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+diff -urNad xchat-2.6.0~/configure xchat-2.6.0/configure
+--- xchat-2.6.0~/configure	2005-11-10 12:38:45.000000000 +0100
++++ xchat-2.6.0/configure	2005-11-15 00:24:58.000000000 +0100
+@@ -27281,7 +27281,7 @@
+ fi
+ 
+ 
+-GUI_LIBS="$GUI_LIBS $GTK_LIBS"
++GUI_LIBS="$GUI_LIBS $GTK_LIBS -llaunchpad-integration"
+ GUI_CFLAGS="$GUI_CFLAGS $GTK_CFLAGS"
+ 
+ gnome=no

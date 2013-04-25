@@ -1,0 +1,16 @@
+## 02_ubuntu_default_server.dpatch by Stuart Prescott <stuart+debian@nanonanonano.net>
+##
+## DP: Change the default selected server to the Ubuntu IRC server.
+
+diff -urNad xchat-2.8.6~/src/common/servlist.c xchat-2.8.6/src/common/servlist.c
+--- xchat-2.8.6~/src/common/servlist.c	2009-02-24 13:11:05.000000000 +0000
++++ xchat-2.8.6/src/common/servlist.c	2009-02-24 13:11:49.000000000 +0000
+@@ -900,7 +900,7 @@
+ 				free (net->encoding);
+ 				net->encoding = strdup (def[i].charset);
+ 			}
+-			if (g_str_hash (def[i].network) == 0x37473b25)
++			if (g_str_hash (def[i].network) == 0x1571bd57)
+ 				prefs.slist_select = j;
+ 			j++;
+ 		} else

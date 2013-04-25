@@ -1,0 +1,72 @@
+Index: xchat-2.8.8/src/common/cfgfiles.c
+===================================================================
+--- xchat-2.8.8.orig/src/common/cfgfiles.c	2012-05-06 11:56:13.000000000 +0100
++++ xchat-2.8.8/src/common/cfgfiles.c	2012-05-06 12:57:07.588010800 +0100
+@@ -610,6 +610,8 @@
+ 	memset (&prefs, 0, sizeof (struct xchatprefs));
+ 
+ 	/* put in default values, anything left out is automatically zero */
++	prefs.slist_skip = 1;
++ 	prefs.tab_pos = 6;
+ 	prefs.local_ip = 0xffffffff;
+ 	prefs.irc_join_delay = 3;
+ 	prefs.show_marker = 1;
+@@ -624,7 +626,7 @@
+ 	prefs.show_away_once = 1;
+ 	prefs.indent_nicks = 1;
+ 	prefs.thin_separator = 1;
+-	prefs._tabs_position = 2; /* 2 = left */
++	prefs._tabs_position = 0; /* 2 = left */
+ 	prefs.fastdccsend = 1;
+ 	prefs.wordwrap = 1;
+ 	prefs.autosave = 1;
+@@ -634,11 +636,11 @@
+ 	prefs.recon_delay = 10;
+ 	prefs.text_replay = 1;
+ 	prefs.tabchannels = 1;
+-	prefs.tab_layout = 2;	/* 0=Tabs 1=Reserved 2=Tree */
++	prefs.tab_layout = 0;	/* 0=Tabs 1=Reserved 2=Tree */
+ 	prefs.tab_sort = 1;
+ 	prefs.paned_userlist = 1;
+ 	prefs.newtabstofront = 2;
+-	prefs.use_server_tab = 1;
++	prefs.use_server_tab = 0;
+ 	prefs.privmsgtab = 1;
+ 	/*prefs.style_inputbox = 1;*/
+ 	prefs.dccpermissions = 0600;
+@@ -647,8 +649,8 @@
+ 	prefs.mainwindow_height = 400;
+ 	prefs.dialog_width = 500;
+ 	prefs.dialog_height = 256;
+-	prefs.gui_join_dialog = 1;
+-	prefs.gui_quit_dialog = 1;
++	prefs.gui_join_dialog = 0;
++	prefs.gui_quit_dialog = 0;
+ 	prefs.dcctimeout = 180;
+ 	prefs.dccstalltimeout = 60;
+ 	prefs.notify_timeout = 15;
+@@ -687,7 +689,7 @@
+ 	strcpy (prefs.stamp_format, "[%H:%M] ");
+ 	strcpy (prefs.timestamp_log_format, "%b %d %H:%M:%S ");
+ 	strcpy (prefs.logmask, "%n-%c.log");
+-	strcpy (prefs.nick_suffix, ",");
++	strcpy (prefs.nick_suffix, ":");
+ 	strcpy (prefs.cmdchar, "/");
+ 	strcpy (prefs.nick1, username);
+ 	strcpy (prefs.nick2, username);
+Index: xchat-2.8.8/src/common/servlist.c
+===================================================================
+--- xchat-2.8.8.orig/src/common/servlist.c	2012-05-06 11:56:13.000000000 +0100
++++ xchat-2.8.8/src/common/servlist.c	2012-05-06 12:58:15.052010817 +0100
+@@ -927,6 +927,11 @@
+ 	int i = 0, j = 0;
+ 	ircnet *net = NULL;
+ 
++	net = servlist_net_add ("Linux Mint Server", NULL, FALSE);
++ 	servlist_server_add (net, "irc.spotchat.org");
++ 	net->autojoin = strdup (_("#linuxmint-chat,#linuxmint-help"));
++ 	net->flags |= FLAG_AUTO_CONNECT;
++
+ 	while (1)
+ 	{
+ 		if (def[i].network)

@@ -1,0 +1,23 @@
+diff -Nurp xchat-2.8.8/src/common/url.c working/src/common/url.c
+--- xchat-2.8.8/src/common/url.c	2009-08-16 02:40:16.000000000 -0700
++++ working/src/common/url.c	2012-02-23 11:21:04.745059924 -0800
+@@ -139,6 +139,7 @@ url_check_word (char *word, int len)
+ 		{ D("file://") },
+ 		{ D("rtsp://") },
+ 		{ D("ut2004://") },
++		{ D("apt:") },
+ 	},
+ 	suffix[] = {
+ 		{ D(".org") },
+diff -Nurp xchat-2.8.8/src/fe-gtk/fe-gtk.c working/src/fe-gtk/fe-gtk.c
+--- xchat-2.8.8/src/fe-gtk/fe-gtk.c	2012-02-23 11:18:22.000000000 -0800
++++ working/src/fe-gtk/fe-gtk.c	2012-02-23 11:22:42.129272865 -0800
+@@ -979,7 +979,7 @@ static void
+ fe_open_url_locale (const char *url)
+ {
+ #ifndef WIN32
+-	if (url[0] != '/' && strchr (url, ':') == NULL)
++	if (url[0] != '/' && strchr (url, ':') == NULL && strncmp (url, "apt:", 4) != 0)
+ 	{
+ 		url = g_strdup_printf ("http://%s", url);
+ 		fe_open_url_inner (url);

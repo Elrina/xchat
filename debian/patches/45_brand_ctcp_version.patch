@@ -1,0 +1,18 @@
+## 45_brand_ctcp_version.dpatch by Daniel Holbach <daniel.holbach@ubuntu.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Modify CTCP VERSION response to be branded with the Ubuntu name.
+
+diff -urNad xchat-2.6.0~/src/common/ctcp.c xchat-2.6.0/src/common/ctcp.c
+--- xchat-2.6.0~/src/common/ctcp.c	2005-10-21 11:50:58.000000000 +0200
++++ xchat-2.6.0/src/common/ctcp.c	2005-12-20 09:48:11.000000000 +0100
+@@ -129,8 +129,7 @@
+ 
+ 	if (!strcasecmp (msg, "VERSION") && !prefs.hidever)
+ 	{
+-		snprintf (outbuf, sizeof (outbuf), "VERSION xchat "PACKAGE_VERSION" %s",
+-					 get_cpu_str ());
++		snprintf (outbuf, sizeof (outbuf), "VERSION xchat "PACKAGE_VERSION" Ubuntu");
+ 		serv->p_nctcp (serv, nick, outbuf);
+ 	}
+ 

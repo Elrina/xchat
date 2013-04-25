@@ -1,0 +1,85 @@
+## 01_serverlist.dpatch by evo, edited by bartm, edited by asisak, edited by
+## warp10, ember
+##
+## DP: Add debian and chillfactory irc servers.
+## DP: Make Debian servers default.
+## DP: Remove Aitvaras IPV6 servers
+## DP: Connect irc.ubuntu.com and irc.freelists.org to port 8001.
+## DP: Fix oz.org referred as "OzNet" and conncting to wrong servers.
+## DP: Refresh patch for 2.8.6
+
+diff -urNad xchat-2.8.6~/src/common/servlist.c xchat-2.8.6/src/common/servlist.c
+--- xchat-2.8.6~/src/common/servlist.c	2008-04-01 09:22:34.000000000 +0100
++++ xchat-2.8.6/src/common/servlist.c	2008-06-22 13:27:45.000000000 +0100
+@@ -46,6 +46,12 @@
+ 
+ static const struct defaultserver def[] =
+ {
++	{"Debian Servers", 0, "#debian"},
++	{0,                     "irc.debian.org"},
++
++	{"Ubuntu Servers", 0, "#ubuntu"},
++	{0,                     "irc.ubuntu.com/8001"},
++
+ 	{"2600net",	0},
+ 	{0,			"irc.2600.net"},
+ 
+@@ -59,12 +65,12 @@
+ 	{0,			"eu.afternet.org"},
+ 
+ 	{"Aitvaras",	0},
+-#ifdef USE_IPV6
++/*#ifdef USE_IPV6
+ #ifdef USE_OPENSSL
+ 	{0,			"irc6.ktu.lt/+7668"},
+ #endif
+ 	{0,			"irc6.ktu.lt/7666"},
+-#endif
++#endif*/
+ #ifdef USE_OPENSSL
+ 	{0,			"irc.data.lt/+6668"},
+ 	{0,			"irc-ssl.omnitel.net/+6668"},
+@@ -137,6 +143,9 @@
+ 	{"ChatSpike", 0},
+ 	{0,			"irc.chatspike.net"},
+ 
++	{"ChillFactory", 0},
++	{0,                     "irc.chillfactory.net"},
++
+ 	{"CoolChat",	0},
+ 	{0,			"irc.coolchat.net"},
+ /*	{0,			"unix.coolchat.net"},
+@@ -207,7 +216,7 @@
+ 	{0,			"irc.vendetta.com"},
+ 
+ 	{"FreeNode",	0},
+-	{0,				"irc.freenode.net"},
++	{0,				"irc.freenode.net/8001"},
+ 
+ /*	{"Freeworld",	0},
+ 	{0,			"kabel.freeworld.nu"},
+@@ -339,7 +348,14 @@
+ 
+ 	{"OzNet",	0},
+ 	{0,			"irc.oz.org"},
+-
++	{0,			"germany.oz.org"},
++	{0,			"sandiego.oz.org"},
++	{0,			"us.oz.org"},
++	{0,			"au.oz.org"},
++	{0,			"rockhampton.oz.org"},
++	{0,			"wollongong.oz.org"},
++	{0,			"waix.oz.org"},	
++	
+ 	{"PTlink",	0},
+ 	{0,			"irc.PTlink.net"},
+ 	{0,			"aaia.PTlink.net"},
+@@ -900,7 +916,7 @@
+ 				free (net->encoding);
+ 				net->encoding = strdup (def[i].charset);
+ 			}
+-			if (g_str_hash (def[i].network) == 0x8e1b96f7)
++			if (g_str_hash (def[i].network) == 0x37473b25)
+ 				prefs.slist_select = j;
+ 			j++;
+ 		} else

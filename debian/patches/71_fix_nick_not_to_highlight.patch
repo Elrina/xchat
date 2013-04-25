@@ -1,0 +1,24 @@
+Index: xchat-2.8.8/src/common/inbound.c
+===================================================================
+--- xchat-2.8.8.orig/src/common/inbound.c	2010-10-08 23:22:34.000000000 +0200
++++ xchat-2.8.8/src/common/inbound.c	2010-10-10 01:59:41.000000000 +0200
+@@ -186,6 +186,9 @@
+ 
+ 	inbound_make_idtext (serv, idtext, sizeof (idtext), id);
+ 
++	if (alert_match_word (from, prefs.irc_no_hilight))
++		return;
++
+ 	sess = find_session_from_nick (from, serv);
+ 	if (!sess)
+ 	{
+@@ -436,6 +439,9 @@
+ 
+ 	inbound_make_idtext (serv, idtext, sizeof (idtext), id);
+ 
++	if (alert_match_word (from, prefs.irc_no_hilight))
++		return;
++
+ 	if (is_hilight (from, text, sess, serv))
+ 		hilight = TRUE;
+ 
